@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Validate caller repository
         run: |
-          ALLOWED="homelabz-eu/infra homelabz-eu/cks-backend homelabz-eu/cks-frontend"
+          ALLOWED="homelabz-eu/infra homelabz-eu/cks-terminal-mgmt homelabz-eu/cks-backend homelabz-eu/cks-frontend"
           if ! echo "$ALLOWED" | grep -qw "${{ github.repository }}"; then
             echo "::error::Unauthorized caller: ${{ github.repository }}"
             exit 1
@@ -24,14 +24,14 @@ jobs:
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          scan-type: 'config'
+          scan-type: "config"
           hide-progress: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          exit-code: '1'
-          severity: 'CRITICAL,HIGH'
+          format: "sarif"
+          output: "trivy-results.sarif"
+          exit-code: "1"
+          severity: "CRITICAL,HIGH"
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: "trivy-results.sarif"
