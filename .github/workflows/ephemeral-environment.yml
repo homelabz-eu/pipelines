@@ -292,10 +292,10 @@ jobs:
     container:
       image: cypress/included:13.6.4
     steps:
-      - name: Checkout demo-apps repository
+      - name: Checkout cypress repository
         uses: actions/checkout@v4
         with:
-          repository: homelabz-eu/demo-apps
+          repository: homelabz-eu/cypress
           path: .
 
       - name: Run Cypress tests

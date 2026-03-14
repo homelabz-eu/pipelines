@@ -38,11 +38,11 @@ jobs:
       - name: Login to Harbor
         run: |
           mkdir -p ~/.docker
-          echo "{\"auths\":{\"registry.toolz.homelabz.eu\":{\"auth\":\"$(echo -n "admin:${HARBOR_KEY}" | base64)\"}}}" > ~/.docker/config.json
+          echo "{\"auths\":{\"registry.homelabz.eu\":{\"auth\":\"$(echo -n "admin:${HARBOR_KEY}" | base64)\"}}}" > ~/.docker/config.json
 
       - name: Build and Push Docker Image
         env:
-          REGISTRY: registry.toolz.homelabz.eu
+          REGISTRY: registry.homelabz.eu
           IMAGE: library/${{ inputs.app-name }}
           SHA: ${{ github.sha }}
         run: |
